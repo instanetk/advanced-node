@@ -13,7 +13,7 @@ app.use(express.urlencoded({ extended: true }));
 app.set("view engine", "pug");
 
 app.route("/").get((req, res) => {
-  res.render("../views/pug/index");
+  res.render("../views/pug/index", { title: "Hello", message: "Please login" });
 });
 
 app.listen(process.env.PORT || 3000, () => {
