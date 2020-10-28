@@ -7,7 +7,6 @@ const session = require("express-session");
 const passport = require("passport");
 const ObjectID = require("mongodb").ObjectID;
 const LocalStrategy = require("passport-local");
-const ensureAuthenticated = require("./middleware/auth");
 
 const app = express();
 
@@ -94,3 +93,10 @@ app.use(passport.session());
 app.listen(process.env.PORT || 3000, () => {
   console.log("Listening on port " + process.env.PORT);
 });
+
+function ensureAuthenticated(req, res, next) {
+  if (req.isAuthenticated()) {
+    return next();
+  }
+  res.redirect("/");
+}
