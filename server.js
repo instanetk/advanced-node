@@ -15,12 +15,17 @@ myDB(async (client) => {
   const myDataBase = await client.db("advanced").collection("node");
 
   let currentUsers = 0;
-  ++currentUsers;
 
   io.on("connection", (socket) => {
+    ++currentUsers;
+
     console.log("A user has connected");
     io.emit("user count", currentUsers);
-    io.emit("disconnect");
+
+    socket.on("disconnect", () => {
+      /*anything you want to do on disconnect*/
+      console.log("disconnect");
+    });
   });
 
   routes(app, myDataBase);

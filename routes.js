@@ -29,7 +29,6 @@ module.exports = function (app, myDataBase) {
     .post(
       passport.authenticate("local", { failureRedirect: "/" }),
       (req, res) => {
-        res.render("../views/pug/profile");
         res.redirect("/profile");
       }
     );
