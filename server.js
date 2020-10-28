@@ -38,14 +38,14 @@ myDB(async (client) => {
     console.log("user " + socket.request.user.name + " connected");
 
     io.emit("user", {
-      name: socket.request.user.name,
+      name: socket.request.user.name || socket.request.user.username,
       currentUsers,
       connected: true,
     });
 
     socket.on("chat message", (message) =>
       io.emit("chat message", {
-        name: socket.request.user.name,
+        name: socket.request.user.name || socket.request.user.username,
         message,
       })
     );
@@ -54,7 +54,7 @@ myDB(async (client) => {
       /*anything you want to do on disconnect*/
       currentUsers--;
       io.emit("user", {
-        name: socket.request.user.name,
+        name: socket.request.user.name || socket.request.user.username,
         currentUsers,
         connected: false,
       });
