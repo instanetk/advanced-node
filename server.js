@@ -19,8 +19,19 @@ myDB(async (client) => {
     res.render("../views/pug/index", {
       title: "Connected to Database",
       message: "Please login",
+      showLogin: true,
     });
   });
+
+  app
+    .route("/login")
+    .post(
+      passport.authenticate("local", { failureRedirect: "/" }),
+      (req, res) => {
+        res.render("../views/pug/profile");
+        res.redirect("/profile");
+      }
+    );
 
   // Serialization and deserialization here...
   passport.serializeUser((user, done) => {
