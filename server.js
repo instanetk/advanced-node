@@ -14,8 +14,16 @@ const io = require("socket.io")(http);
 myDB(async (client) => {
   const myDataBase = await client.db("advanced").collection("node");
 
+  let currentUsers = 0;
+  ++currentUsers;
+
   io.on("connection", (socket) => {
     console.log("A user has connected");
+    io.emit("user count", currentUsers);
+  });
+
+  socket.on("user count", function (data) {
+    console.log(data);
   });
 
   routes(app, myDataBase);
