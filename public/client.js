@@ -12,7 +12,8 @@ let socket = io();
 
 socket.on("user count", function (data) {
   console.log(data);
-  socket.on("disconnect", () => {
-    /*anything you want to do on disconnect*/
-  });
+});
+
+socket.on("disconnect", () => {
+  /*anything you want to do on disconnect*/
 });

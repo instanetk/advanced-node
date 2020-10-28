@@ -20,6 +20,7 @@ myDB(async (client) => {
   io.on("connection", (socket) => {
     console.log("A user has connected");
     io.emit("user count", currentUsers);
+    io.emit("disconnect");
   });
 
   routes(app, myDataBase);
