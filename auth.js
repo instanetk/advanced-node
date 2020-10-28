@@ -39,7 +39,8 @@ module.exports = function (app, myDataBase) {
       {
         clientID: process.env.GITHUB_CLIENT_ID,
         clientSecret: process.env.GITHUB_CLIENT_SECRET,
-        callbackURL: "https://repl.it/@instanetk/auth/github/callback",
+        callbackURL:
+          "https://advanced-node.instanetk.repl.co/auth/github/callback",
       },
       function (accessToken, refreshToken, profile, cb) {
         console.log(profile);
