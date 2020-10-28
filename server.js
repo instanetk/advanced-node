@@ -22,10 +22,6 @@ myDB(async (client) => {
     io.emit("user count", currentUsers);
   });
 
-  socket.on("user count", function (data) {
-    console.log(data);
-  });
-
   routes(app, myDataBase);
   auth(app, myDataBase);
   // Be sure to change the title
